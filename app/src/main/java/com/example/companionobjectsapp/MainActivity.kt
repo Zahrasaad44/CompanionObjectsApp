@@ -14,16 +14,28 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        binding.submitBtn.setOnClickListener { applyChanges() }
-
+        switch()
     }
 
-    private fun applyChanges() {
-        val input = binding.userInputET.text.toString().lowercase()
-        when (input) {
-            "day" -> Time.makeDay(binding.dayNightCL, binding.instructionTV, binding.userInputET, binding.submitBtn)
-            "night" -> Time.makeNight(binding.dayNightCL, binding.instructionTV, binding.userInputET, binding.submitBtn)
-            else -> Toast.makeText(this, "Type 'day' or 'night' only", Toast.LENGTH_LONG).show()
+
+    private fun switch() {
+        binding.switchBtn.setOnCheckedChangeListener { _, isChecked ->
+            if(isChecked) {
+                Time.makeDay(binding.dayNightCL, binding.instructionTV)
+            } else {
+                Time.makeNight(binding.dayNightCL, binding.instructionTV)
+            }
         }
     }
+
+
+//    private fun applyChanges() {
+//        val input = binding.userInputET.text.toString().lowercase()
+//        when (input) {
+//            "day" -> Time.makeDay(binding.dayNightCL, binding.instructionTV, binding.userInputET, binding.submitBtn)
+//            "night" -> Time.makeNight(binding.dayNightCL, binding.instructionTV, binding.userInputET, binding.submitBtn)
+//            else -> Toast.makeText(this, "Type 'day' or 'night' only", Toast.LENGTH_LONG).show()
+//        }
+//    }
+
 }
